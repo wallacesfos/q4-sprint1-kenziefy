@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction} from "express";
 import { banco_dados } from "../db";
+import jwt from 'jsonwebtoken'
+import { config } from "../config/jwt";
 
 
 export const existsUser = (request : Request, response : Response, next: NextFunction) => {
@@ -24,3 +26,20 @@ export const validate = (schema: any) => async (request : Request, response : Re
         response.status(400).json({ error: e.errors.join(", ") });
     }
 }
+
+
+export const authenticate = (request: Request, response: Response, next: NextFunction) => {
+    if (!request.headers.authorization) {
+      return response.status(401).json({ message: "invalid token."});
+    }
+  
+    let token = request.headers.authorization.split(" ")[1];
+  
+    jwt.verify(token, config.secret, (err, decoded) => {
+      if (err) {
+        return response.status(401).json({ message: "Invalid Token." });
+      } else {
+        return next();
+      }
+    });
+};
