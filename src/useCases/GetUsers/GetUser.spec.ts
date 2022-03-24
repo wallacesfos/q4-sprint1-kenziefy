@@ -21,7 +21,6 @@ describe("Get Users", () => {
 
         const users = await request(app).post("/users/login").send(user)
         
-
         const response = await request(app).get("/users").set('authorization', `bearer ${users.text.split(':')[1].replace(/["{}]/g, '')}`)
 
         expect(response.statusCode).toBe(200)

@@ -3,6 +3,7 @@ import { authenticate, existsUser, validate } from "../middleweres";
 import { registerSchema } from "../schemas";
 import { createPlaylistController } from "../useCases/CreatePlaylist";
 import { createUserController } from "../useCases/CreateUser";
+import { deletePlaylistControllers } from "../useCases/DeletePlaylist";
 import { getUserController } from "../useCases/GetUsers";
 import { loginUserController } from "../useCases/LoginUser";
 
@@ -22,6 +23,10 @@ router.get('/users', authenticate, (request, response) => {
 
 router.put('/users/playlist', authenticate, (request, response) => {
     return createPlaylistController.handle(request, response)
+})
+
+router.delete('/users/playlist', authenticate, (request, response) => {
+    return deletePlaylistControllers.handle(request, response)
 })
 
 export { router }

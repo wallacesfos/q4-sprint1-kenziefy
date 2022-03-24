@@ -9,7 +9,21 @@ export class CreatePlaylistRepositories implements ICreatePlaylistRepositories{
                 item.playlist = playlist;
             }
         });
+    }
 
-        
+    async delete(artist: string, song: string, id: string): Promise<void>{
+
+        banco_dados.map((item: any) => {
+            if(item.id === id){
+                let newArr: any[] = []
+                item.playlist[artist].map((item : any) => {
+                    if(item.title !== song){
+                        newArr.push(item)
+                    }
+                })
+
+                item.playlist[artist] = newArr
+            }
+        })
     }
 }
