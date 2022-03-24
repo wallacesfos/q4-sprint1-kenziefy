@@ -1,12 +1,12 @@
-import { GetUserRepositories } from "../../repositories/implementations/GetUserRepositories";
+import { CreatePlaylistRepositories } from "../../repositories/implementations/CreatePlaylistRepositories";
 import { GetUserController } from "./GetUserController";
 
 
-const getUserRepositories = new GetUserRepositories()
+const createPlaylistRepositories = new CreatePlaylistRepositories()
 
 const getUserController = new GetUserController(
-    getUserRepositories
+    createPlaylistRepositories
 )
 
 
-export { getUserController, getUserRepositories }
+export { getUserController, createPlaylistRepositories }

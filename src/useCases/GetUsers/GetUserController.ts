@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
-import { IGetUserRepository } from "../../repositories/IGetUserRepository";
+import { ICreatePlaylistRepositories } from "../../repositories/ICreatePlaylistRepositories";
 
 
 export class GetUserController{
 
     constructor(
-        private getUserRepositories: IGetUserRepository
+        private createPlaylistRepositories: ICreatePlaylistRepositories
     ){}
     
     async handle(request: Request, response: Response) : Promise<Response> {
-        const users = await this.getUserRepositories.findUsers();
+        const users = await this.createPlaylistRepositories.findUsers()
 
         let arr: { id: string; username: string; playlist: any; }[] = []
 
