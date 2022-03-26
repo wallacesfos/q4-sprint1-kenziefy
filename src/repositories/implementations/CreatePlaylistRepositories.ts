@@ -13,6 +13,11 @@ export class CreatePlaylistRepositories implements ICreatePlaylistRepositories{
         banco_dados.map((item: any) => {
             if(item.id === id){
                 for(let i of Object.keys(playlist)){
+                    playlist[i].map((item: any) => {
+                        item.title = item.title.split(' ').map((word: any) => {
+                            return word[0].toUpperCase() + word.slice(1);
+                        }).join(' ')
+                    })
                     if(item.playlist[i] === undefined){
                         item.playlist[i] = playlist[i];
                     }else{
