@@ -1,1 +1,1 @@
-export const banco_dados: any = [];
+export const banco_dadoss: any = [];
